@@ -91,7 +91,6 @@
         "@elizaos/plugin-hyperliquid": "workspace:*",
         "@elizaos/plugin-akash": "workspace:*",
         "@elizaos/plugin-quai": "workspace:*",
-        "@elizaos/plugin-devschool": "workspace:*",
         "@elizaos/client-discord": "workspace:*",
         "readline": "1.3.0",
         "ws": "8.18.0",

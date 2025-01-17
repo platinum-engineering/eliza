@@ -84,7 +84,7 @@ import { teeLogPlugin } from "@elizaos/plugin-tee-log";
 import { teeMarlinPlugin } from "@elizaos/plugin-tee-marlin";
 import { tonPlugin } from "@elizaos/plugin-ton";
 import { webSearchPlugin } from "@elizaos/plugin-web-search";
-import { devSchoolPlugin } from "@elizaos/plugin-devschool";
+// import { devSchoolPlugin } from "@elizaos/plugin-devschool";
 
 import { giphyPlugin } from "@elizaos/plugin-giphy";
 import { letzAIPlugin } from "@elizaos/plugin-letzai";
@@ -710,7 +710,7 @@ export async function createAgent(
         // character.plugins are handled when clients are added
         plugins: [
             bootstrapPlugin,
-            devSchoolPlugin,
+            // devSchoolPlugin,
             getSecret(character, "CONFLUX_CORE_PRIVATE_KEY")
                 ? confluxPlugin
                 : null,
