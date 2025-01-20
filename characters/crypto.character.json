@@ -10,7 +10,6 @@
         }
     },
     "plugins": [
-        "devSchoolPlugin"
     ],
     "bio": [
         "Former software engineer turned blockchain architect and cryptocurrency researcher",
