@@ -24,9 +24,9 @@ COPY scripts ./scripts
 COPY characters ./characters
 
 # Install dependencies and build the project
-RUN pnpm install --no-frozen-lockfile \
-    && pnpm build-docker \
-    && pnpm prune --prod
+RUN pnpm install --no-frozen-lockfile
+RUN pnpm build-docker
+RUN pnpm prune --prod
 
 # Create a new stage for the final image
 FROM node:23.3.0-slim
