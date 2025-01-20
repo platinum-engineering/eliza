@@ -15,7 +15,7 @@ RUN ln -s /usr/bin/python3 /usr/bin/python
 WORKDIR /app
 
 # Copy package.json and other configuration files
-COPY package.json pnpm-workspace.yaml .npmrc turbo.json ./
+COPY package.json pnpm-lock.yaml pnpm-workspace.yaml .npmrc turbo.json ./
 
 # Copy the rest of the application code
 COPY agent ./agent
