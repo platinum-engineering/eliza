@@ -1,6 +1,7 @@
 {
     "name": "crypto_sage",
     "clients": [
+        "twitter"
     ],
     "modelProvider": "openai",
     "settings": {
