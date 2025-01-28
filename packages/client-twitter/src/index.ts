@@ -9,6 +9,7 @@ import { TwitterInteractionClient } from "./interactions.ts";
 import { TwitterPostClient } from "./post.ts";
 import { TwitterSearchClient } from "./search.ts";
 import { TwitterSpaceClient } from "./spaces.ts";
+import { TwitterSummarizeClient } from "./summarize.ts";
 
 /**
  * A manager that orchestrates all specialized Twitter logic:
@@ -21,6 +22,7 @@ import { TwitterSpaceClient } from "./spaces.ts";
 class TwitterManager {
     client: ClientBase;
     post: TwitterPostClient;
+    summarize: TwitterSummarizeClient;
     search: TwitterSearchClient;
     interaction: TwitterInteractionClient;
     space?: TwitterSpaceClient;
@@ -30,7 +32,14 @@ class TwitterManager {
         this.client = new ClientBase(runtime, twitterConfig);
 
         // Posting logic
-        this.post = new TwitterPostClient(this.client, runtime);
+        if (!twitterConfig.TWITTER_SUMMARIZE_ENABLE) {
+            this.post = new TwitterPostClient(this.client, runtime);
+        }
+
+        // Summarize and post logic
+        if (twitterConfig.TWITTER_SUMMARIZE_ENABLE) {
+            this.summarize = new TwitterSummarizeClient(this.client, runtime);
+        }
 
         // Optional search logic (enabled if TWITTER_SEARCH_ENABLE is true)
         if (twitterConfig.TWITTER_SEARCH_ENABLE) {
@@ -64,7 +73,14 @@ export const TwitterClientInterface: Client = {
         await manager.client.init();
 
         // Start the posting loop
-        await manager.post.start();
+        if (!manager.summarize) {
+            await manager.post.start();
+        }
+
+        // Start the summarize loop
+        if (manager.summarize) {
+            await manager.summarize.start();
+        }
 
         // Start the search logic if it exists
         if (manager.search) {
