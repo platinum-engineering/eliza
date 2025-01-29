@@ -104,7 +104,8 @@ export class TwitterSummarizeClient {
     private async engageWithSummarizeTerms() {
         console.log("Engaging with search terms");
         try {
-            const searchTerm = [...this.runtime.character.topics][
+            // @todo add env variable for summarize topics
+            const searchTerm = ['ai', 'artificial intelligence'][
                 Math.floor(Math.random() * this.runtime.character.topics.length)
             ];
 
