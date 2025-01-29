@@ -1,6 +1,8 @@
 {
     "name": "valley_anon",
-    "clients": [],
+    "clients": [
+        "twitter"
+    ],
     "modelProvider": "openai",
     "settings": {
         "secrets": {},
