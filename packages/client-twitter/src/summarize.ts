@@ -104,20 +104,28 @@ export class TwitterSummarizeClient {
     private async engageWithSummarizeTerms() {
         console.log("Engaging with search terms");
         try {
-            // @todo add env variable for summarize topics
-            const summarizeTopics = ['ai', 'artificial intelligence']
-            const searchTerm = [...summarizeTopics][
-                Math.floor(Math.random() * summarizeTopics.length)
-            ];
+            // TODO: add env variable for summarize topics
+            const summarizeTopics = ['ai', 'crypto', 'blockchain', 'defi']
+            // const searchTerm = [...summarizeTopics][
+            //     Math.floor(Math.random() * summarizeTopics.length)
+            // ];
+            let recentTweets = []
 
-            console.log("Fetching summarize tweets");
-            // TODO: we wait 5 seconds here to avoid getting rate limited on startup, but we should queue
-            await new Promise((resolve) => setTimeout(resolve, 5000));
-            const recentTweets = await this.client.fetchSearchTweets(
-                searchTerm,
-                20,
-                SearchMode.Top
-            );
+            for (const [index, topic] of summarizeTopics.entries()) {
+                // TODO: we wait 5 seconds here to avoid getting rate limited on startup, but we should queue
+                await new Promise((resolve) => setTimeout(resolve, 5000 * (index + 1)));
+                recentTweets = await this.client.fetchSearchTweets(
+                    searchTerm,
+                    20,
+                    SearchMode.Top
+                );
+
+                elizaLogger.log(`Found summarize tweets for topic: ${topic}: ${recentTweets.length}`);
+
+                if (recentTweets.length > 0) {
+                    break
+                }
+            }
 
             const homeTimeline = await this.client.fetchHomeTimeline(5);
 
@@ -139,7 +147,7 @@ export class TwitterSummarizeClient {
 
             if (slicedTweets.length === 0) {
                 console.log(
-                    "No valid tweets found for the search term",
+                    "No valid tweets found to summarize for the search term",
                     searchTerm
                 );
                 return;
@@ -167,7 +175,7 @@ export class TwitterSummarizeClient {
                     "twitter"
                 );
 
-                const topics = this.runtime.character.topics.join(", ");
+                const topics = summarizeTopics.join(", ");
 
                 const state = await this.runtime.composeState(
                     {
