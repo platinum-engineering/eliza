@@ -110,8 +110,9 @@ export class TwitterSummarizeClient {
             //     Math.floor(Math.random() * summarizeTopics.length)
             // ];
             let recentTweets = []
+            let searchTerm = ''
 
-            for (const [index, topic] of summarizeTopics.entries()) {
+            for (const [index, searchTerm] of summarizeTopics.entries()) {
                 // TODO: we wait 5 seconds here to avoid getting rate limited on startup, but we should queue
                 await new Promise((resolve) => setTimeout(resolve, 5000 * (index + 1)));
                 recentTweets = await this.client.fetchSearchTweets(
@@ -120,7 +121,7 @@ export class TwitterSummarizeClient {
                     SearchMode.Top
                 );
 
-                elizaLogger.log(`Found summarize tweets for topic: ${topic}: ${recentTweets.length}`);
+                elizaLogger.log(`Found summarize tweets for searchTerm: ${searchTerm}: ${recentTweets.length}`);
 
                 if (recentTweets.length > 0) {
                     break
