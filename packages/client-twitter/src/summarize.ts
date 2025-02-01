@@ -109,7 +109,7 @@ export class TwitterSummarizeClient {
             // const searchTerm = [...summarizeTopics][
             //     Math.floor(Math.random() * summarizeTopics.length)
             // ];
-            let recentTweets = []
+            let recentTweets = { tweets: []}
             let searchTerm = ''
 
             for (const [index, searchTerm] of summarizeTopics.entries()) {
@@ -121,9 +121,10 @@ export class TwitterSummarizeClient {
                     SearchMode.Top
                 );
 
-                elizaLogger.log(`Found summarize tweets for searchTerm: ${searchTerm}: ${recentTweets.length}`);
+                elizaLogger.log(`Found summarize tweets for searchTerm: ${searchTerm}: ${recentTweets.tweets.length}`);
 
-                if (recentTweets.length > 0) {
+                if (recentTweets.tweets.length > 0) {
+                    elizaLogger.log(recentTweets.tweets)
                     break
                 }
             }
