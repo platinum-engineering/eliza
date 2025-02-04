@@ -1,11 +1,17 @@
 {
-    "name": "valley_anon",
+    "name": "Ryan",
     "clients": [
         "twitter"
     ],
     "modelProvider": "openai",
     "settings": {
-        "secrets": {},
+        "secrets": {
+            "TWITTER_USERNAME": "Ryan21mln",
+            "TWITTER_PASSWORD": "Ryan21mln",
+            "TWITTER_EMAIL": "ryan21000000@gmail.com",
+            "TWITTER_SUMMARIZE_ENABLE": "TRUE",
+            "TWITTER_TARGET_USERS": "whono1knows,VitalikButerin,garyvee,punk6529,opensea,beeple,brian_armstrong,DeeZe"
+        },
         "voice": {
             "model": "en_US-male-medium"
         }

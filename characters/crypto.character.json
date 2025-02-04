@@ -5,7 +5,13 @@
     ],
     "modelProvider": "openai",
     "settings": {
-        "secrets": {},
+        "secrets": {
+            "TWITTER_USERNAME": "gbmplatinum",
+            "TWITTER_PASSWORD": "\"rZL^Kf32UWv8z;B\"",
+            "TWITTER_EMAIL": "g.b.mikaeliann@gmail.com",
+            "TWITTER_SUMMARIZE_ENABLE": "FALSE",
+            "TWITTER_TARGET_USERS": "whono1knows,Ryan21mln"
+        },
         "voice": {
             "model": "en_US-male-medium"
         }
