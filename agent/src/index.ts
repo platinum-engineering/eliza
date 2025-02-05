@@ -762,12 +762,12 @@ const startAgents = async () => {
         characters = await loadCharacters(charactersArg);
     }
 
-    try {
-        for (const character of characters) {
+    for (const character of characters) {
+        try {
             await startAgent(character, directClient);
+        } catch (error) {
+            elizaLogger.error(`Error starting agent character ${character.name}:`, error);
         }
-    } catch (error) {
-        elizaLogger.error("Error starting agents:", error);
     }
 
     // Find available port
