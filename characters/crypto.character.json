@@ -1,11 +1,10 @@
 {
-    "name": "crypto_sage",
+    "name": "Crypto",
     "clients": [
         "twitter"
     ],
     "modelProvider": "openai",
     "settings": {
-        "secrets": {},
         "voice": {
             "model": "en_US-male-medium"
         }
