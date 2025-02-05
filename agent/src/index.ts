@@ -189,7 +189,7 @@ export async function loadCharacters(
 
                 // .id isn't really valid
                 const characterId = character.id || character.name;
-                const characterPrefix = `CHARACTER.${characterId.toUpperCase().replace(/ /g, "_")}.`;
+                const characterPrefix = `CHARACTER__${characterId.toUpperCase().replace(/ /g, "_")}__`;
 
                 const characterSettings = Object.entries(process.env)
                     .filter(([key]) => key.startsWith(characterPrefix))
